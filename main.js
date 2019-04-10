@@ -8,6 +8,9 @@ var conditionStatement = document.querySelector("#conditionStatement");
 var lifeLeft = 10;
 var comment = "Your last guess was ";
 var lowOrHigh = document.querySelector("#lowOrHigh");
+var yourGuesses = document.querySelector("#yourGuesses");
+var guessArray = [];
+var resetButton = document.querySelector("#reset");
 
 function randomNumber() {
   var randNum = Math.floor(Math.random() * 156);
@@ -24,10 +27,13 @@ guessButton.addEventListener("click", function() {
     guessNumber.disabled = true;
     guessButton.disabled = true;
     conditionStatement.textContent =
-      "Correct! You got it in " + (10 - lifeLeft) + " turns.";
+      "Correct! You got it in " + (11 - lifeLeft) + " turns.";
     lowOrHigh.textContent = "Congratulations, You Won!";
+    resetButton.classList.remove("invisible");
+    resetButton.addEventListener("click", function() {
+      reset()
+    });
   } else {
-    body.style.background = "#fed7d7";
     conditionStatement.textContent = livesLeft();
     guessNumber.value = "";
     if (guessedNumber > selectedNumber) {
@@ -35,7 +41,20 @@ guessButton.addEventListener("click", function() {
     } else {
       lowOrHigh.textContent = comment + "too low!";
     }
+    if (lifeLeft === 0) {
+      body.style.background = "#fed7d7";
+      guessNumber.disabled = true;
+      guessButton.disabled = true;
+      lowOrHigh.textContent = "The random number is " + selectedNumber + ".";
+      resetButton.classList.remove("invisible");
+      resetButton.addEventListener("click", function() {
+        reset()
+      });
+    }
   }
+  guessArray.push(guessedNumber);
+  yourGuesses.classList.remove("invisible");
+  yourGuesses.textContent = "Your Guesses: " + guessArray.join(", ");
 });
 
 function livesLeft() {
@@ -49,4 +68,18 @@ function livesLeft() {
     lifeLeft -= 1;
     return "Game Over! You have no more turns.";
   }
+}
+
+function reset() {
+  conditionStatement.textContent = "";
+  lowOrHigh.textContent = "";
+  resetButton.classList.add("invisible");
+  body.style.background = "#f7fafc";
+  guessNumber.disabled = false;
+  guessButton.disabled = false;
+  selectedNumber = randomNumber();
+  guessNumber.value = "";
+  guessArray = [];
+  yourGuesses.classList.add("invisible");
+  lifeLeft = 10;
 }
