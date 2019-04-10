@@ -2,20 +2,39 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Number Guessing Game</title>
-	<link rel="stylesheet" type="text/css" media="screen" href="css/output.css" />
-	<!-- <link rel="stylesheet" href="css/debug.css"> -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Number Guessing Game</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="css/output.css" />
+  <!-- <link rel="stylesheet" href="css/debug.css" /> -->
 </head>
 
-<body class="bg-gray-300 text-gray-700 text-center">
-	
-	<h1 class="text-2xl sm:text-3xl mt-8 tracking-wide font-semibold">Number Guessing Game</h1>
-	<p class="mx-6 text-md sm:text-lg">A number between <span class="font-bold">1-100</span> has been randomly selected. See if you can guess it in 10 turns or lower. Good luck!</p>
-	<input type="number" id="input" class="appearance-none w-16 h-12 text-lg text-center bg-gray-100 focus:bg-white focus:border-gray-600 rounded" min="1" max="3" placeholder="0">
+<body class="bg-gray-100 text-gray-700 text-center">
+  <div class="container mx-auto">
+    <h1 class="text-2xl sm:text-3xl mt-8 tracking-wide font-semibold">
+      Number Guessing Game
+    </h1>
+  </div>
+  <div class="container mx-auto">
+    <p class="mx-6 text-md sm:text-lg">
+      A number between <span class="font-bold">1-150</span> has been randomly selected. See if you can guess it in 10 turns or less. Good luck!
+    </p>
+  </div>
+  <div class="container mx-auto pt-3 pb-3">
+    <p class="text-sm sm:text-md mt-3">Guess a Number:</p>
+    <input type="number" id="input"
+      class="block appearance-none w-16 h-12 text-lg text-center bg-gray-200 rounded mx-auto mb-4 border focus:outline-none focus:border-gray-700 focus:bg-white"
+      minlength="1" maxlength="3" placeholder="0" value=""/>
+    <button
+      class="block mx-auto py-1 px-2 rounded-full bg-white border border-gray-700 focus:outline-none hover:bg-gray-300 text-sm sm:text-md mb-3 font-semibold">Submit Guess</button>
+  </div>
 
-	<script src="main.js"></script>
+  <div class="flex flex-col container mx-auto text-md sm:text-lg h-auto">
+    <p id="conditionStatement" class="flex-1 block -mb-3"></p>
+    <p class="flex-1 block" id="comment"><span class="font-bold" id="lowOrHigh"></span></p>
+  </div>
+
+  <script src="main.js"></script>
 </body>
 
 </html>
